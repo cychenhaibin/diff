@@ -9,3 +9,10 @@
 ![img3.png](static/img3.png)
 
 ## 手写递归创建子节点
+![img.png](static/img4.png)
+
+![img.png](static/img5.png)
+
+![img.png](static/img6.png)
+
+## diff处理新旧节点是同一节点时
