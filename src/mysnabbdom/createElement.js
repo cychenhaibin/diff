@@ -3,7 +3,6 @@
 export default function createElement(vnode) {
     // 目的是把虚拟节点vnode真正变为DOM
     // 创建一个DOM节点，这个节点现在还是孤儿节点
-    console.log(111)
     let domNode = document.createElement(vnode.sel);
     // 有子节点还是文本
     if(vnode.text != '' && (vnode.children == undefined || vnode.children.length == 0)) {
