@@ -44,3 +44,8 @@
 
 ## 手写新旧节点text的不同情况
 ![img.png](static/img8.png)
+
+## 尝试书写diff更新子节点
+![img.png](static/img9.png)
+这个算法有点杂糅，可以看后面的
+
