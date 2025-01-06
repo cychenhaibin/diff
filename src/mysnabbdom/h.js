@@ -20,11 +20,8 @@ export default function(sel, data, c){
         let children = [];
         for(let i = 0;i < c.length;i++){
             // 检查c[i]必须是一个对象，如果不满足
-            if(!(typeof c[i] == 'object' && c.hasOwnProperty('sel'))) {
-                console.log(!(typeof c[i] == 'object' && c.hasOwnProperty('sel')))
-                console.log(c)
-            }
-                // throw new Error('传入的数组中有项不是h函数')
+            if((typeof c[i] == 'object' && c.hasOwnProperty('sel')))
+                throw new Error('传入的数组中有项不是h函数')
             // 这里不用执行c[i]，因为你的测试语句中已经有了执行
             // 此时只需要收集就可以了
             children.push(c[i])
