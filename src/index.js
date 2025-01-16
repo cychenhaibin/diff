@@ -16,11 +16,13 @@ patch(container,myVode1)
 
 // 创建新节点
 const myVode2 = h('section', {}, [
-    h('p', {key: 'E'}, 'E'),
-    h('p', {key: 'D'}, 'D'),
-    h('p', {key: 'C'}, 'CCCCC'),
+    h('p', {key: 'A'}, 'A'),
     h('p', {key: 'B'}, 'B'),
-    h('p', {key: 'A'}, 'AAAA'),
+    h('p', {key: 'Q'}, 'Q'),
+    h('p', {key: 'E'}, 'E'),
+
+    h('p', {key: 'F'}, 'F'),
+    h('p', {key: 'G'}, 'G'),
 ]);
 
 btn.onclick = function() {

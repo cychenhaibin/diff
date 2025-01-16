@@ -2,7 +2,8 @@ import patchVnode from "./patchVnode";
 import createElement from "./createElement";
 // 判断是否是同一个虚拟节点
 function checkSameVnode(a, b) {
-    return a.sel == b.sel && a.key == b.key;
+    if (!a || !b) return false;
+    return a.sel && b.sel && a.sel == b.sel && a.key == b.key;
 }
 
 export default function updateChildren(parentElm, oldCh, newCh) {
@@ -25,7 +26,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
 
     // 开始while
     while(oldStartIdx <= newEndIdx && newStartIdx <= newEndIdx){
-        console.log(0,oldStartVnode, newEndVnode);
+        console.log(0,oldStartVnode, newStartVnode);
         // 新前和旧前
         if (checkSameVnode(oldStartVnode, newStartVnode)) {
             console.log('新前和旧前')
@@ -57,6 +58,25 @@ export default function updateChildren(parentElm, oldCh, newCh) {
             parentElm.insertBefore(oldEndVnode.elm, oldStartVnode.elm);
             oldEndVnode = oldCh[--oldEndIdx];
             newStartVnode = newCh[++newStartIdx];
+        } else {
+            // 都没有找到
+            // 当没有找到匹配节点时，处理剩余的新节点
+            if (newStartIdx <= newEndIdx) {
+                const before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm;
+                for(let i = newStartIdx; i <= newEndIdx; i++){
+                    // insertBefore方法可以自动识别null，如果null就会自动排到队尾去，和appendChild是一致了
+                    // newCh[i]现在还没有真正的dom,所以要调用createElement()函数变为dom
+                    parentElm.insertBefore(createElement(newCh[i]), before);
+                }
+                break; // 处理完剩余新节点后退出循环
+            }
+
+        }
+    }
+    // 处理剩余的旧节点，进行删除操作
+    if (oldStartIdx <= oldEndIdx) {
+        for(let i = oldStartIdx; i <= oldEndIdx; i++) {
+            parentElm.removeChild(oldCh[i].elm);
         }
     }
 }
